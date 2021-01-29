@@ -2,17 +2,17 @@ const conn = require('../../services/mysql/index');
 
 module.exports = {
     async create({
-        id_horario,
-        id_usuario
+        descripcion,
+        nombre,
+        imagen,
     }) {
         return new Promise(function (resolve, reject) {
-            conn.query('call sp_mantenedor_cita(?,?,?,?,?,?)', [
+            conn.query('call sp_mantenedor_area(?,?,?,?,?)', [
                 2,
                 0,
-                id_horario,
-                id_usuario,
-                "",
-                0
+                descripcion,
+                nombre,
+                imagen
             ], function (err, rows) {
                 try {
                     resolve(1);
@@ -25,16 +25,17 @@ module.exports = {
 
     async update({
         id,
-        fecha_postergacion
+        descripcion,
+        nombre,
+        imagen,
     }) {
         return new Promise(function (resolve, reject) {
-            conn.query('call sp_mantenedor_cita(?,?,?,?,?,?)', [
+            conn.query('call sp_mantenedor_area(?,?,?,?,?)', [
                 3,
                 id,
-                0,
-                0,
-                fecha_postergacion,
-                0
+                descripcion,
+                nombre,
+                imagen
             ], function (err, rows) {
                 try {
                     return resolve(1);
@@ -45,15 +46,14 @@ module.exports = {
         });
     },
 
-    async listData({ id_usuario }) {
+    async list() {
         return new Promise(function (resolve, reject) {
-            conn.query('call sp_mantenedor_cita(?,?,?,?,?,?)', [
+            conn.query('call sp_mantenedor_area(?,?,?,?,?)', [
                 1,
                 0,
-                0,
-                id_usuario,
                 "",
-                0
+                "",
+                ""
             ], function (err, rows) {
                 try {
                     return resolve(rows[0]);
@@ -65,18 +65,16 @@ module.exports = {
         });
     },
 
-    async estado({
-        id,
-        estado
+    async delete({
+        id
     }) {
         return new Promise(function (resolve, reject) {
-            conn.query('call sp_mantenedor_cita(?,?,?,?,?,?)', [
+            conn.query('call sp_mantenedor_area(?,?,?,?,?)', [
                 4,
                 id,
-                0,
-                0,
                 "",
-                estado
+                "",
+                ""
             ], function (err, rows) {
                 try {
                     return resolve(1);

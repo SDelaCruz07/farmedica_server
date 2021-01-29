@@ -2,20 +2,30 @@ const conn = require('../../services/mysql/index');
 
 module.exports = {
     async create({
-        id_horario,
-        id_usuario
+        nombre,
+        apellido,
+        carnet,
+        area,
+        imagen,
     }) {
         return new Promise(function (resolve, reject) {
-            conn.query('call sp_mantenedor_cita(?,?,?,?,?,?)', [
+            conn.query('call sp_mantenedor_doctor(?,?,?,?,?,?,?,?)', [
                 2,
-                0,
-                id_horario,
-                id_usuario,
                 "",
-                0
+                0,
+                nombre,
+                apellido,
+                carnet,
+                area,
+                imagen,
             ], function (err, rows) {
                 try {
-                    resolve(1);
+                    if (rows[0][0]["_exists"] != 0) {
+                        resolve(1);
+                    }
+                    else {
+                        return resolve(0)
+                    }
                 } catch (error) {
                     return resolve(-1);
                 }
@@ -25,16 +35,22 @@ module.exports = {
 
     async update({
         id,
-        fecha_postergacion
+        nombre,
+        apellido,
+        carnet,
+        area,
+        imagen,
     }) {
         return new Promise(function (resolve, reject) {
-            conn.query('call sp_mantenedor_cita(?,?,?,?,?,?)', [
+            conn.query('call sp_mantenedor_doctor(?,?,?,?,?,?,?,?)', [
                 3,
+                "",
                 id,
-                0,
-                0,
-                fecha_postergacion,
-                0
+                nombre,
+                apellido,
+                carnet,
+                area,
+                imagen,
             ], function (err, rows) {
                 try {
                     return resolve(1);
@@ -45,15 +61,20 @@ module.exports = {
         });
     },
 
-    async listData({ id_usuario }) {
+    async list({
+        area,
+        fecha,
+    }) {
         return new Promise(function (resolve, reject) {
-            conn.query('call sp_mantenedor_cita(?,?,?,?,?,?)', [
+            conn.query('call sp_mantenedor_doctor(?,?,?,?,?,?,?,?)', [
                 1,
+                fecha,
                 0,
-                0,
-                id_usuario,
                 "",
-                0
+                "",
+                "",
+                area,
+                ""
             ], function (err, rows) {
                 try {
                     return resolve(rows[0]);
@@ -65,18 +86,19 @@ module.exports = {
         });
     },
 
-    async estado({
-        id,
-        estado
+    async delete({
+        id
     }) {
         return new Promise(function (resolve, reject) {
-            conn.query('call sp_mantenedor_cita(?,?,?,?,?,?)', [
+            conn.query('call sp_mantenedor_doctor(?,?,?,?,?,?,?,?)', [
                 4,
-                id,
-                0,
-                0,
                 "",
-                estado
+                id,
+                "",
+                "",
+                "",
+                "",
+                ""
             ], function (err, rows) {
                 try {
                     return resolve(1);
