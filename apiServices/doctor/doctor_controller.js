@@ -7,7 +7,23 @@ module.exports = {
             area: req.body.area,
             fecha: req.body.fecha,
         });
-        return res.send(dto.multiple(doctor));
+        var array_doctor = [];
+
+        for (let index = 0; index < doctor.length; index++) {
+            var array_last = [];
+            var object_doctor = new Object();
+            object_doctor.id = doctor[index]["doc_id"];
+            object_doctor.nombre = doctor[index]["doc_nombre"];
+            object_doctor.apellido = doctor[index]["doc_apellido"];
+            object_doctor.carnet = doctor[index]["doc_carnet_cmp"];
+            object_doctor.imagen = doctor[index]["doc_imagen"];
+            array_last = await doctor_model.getLast({
+                id: doctor[index]["doc_id"]
+            })
+            object_doctor.last = array_last;
+            array_doctor.push(object_doctor);
+        }
+        return res.send(dto.multiple(array_doctor));
     },
 
     async create(req, res) {

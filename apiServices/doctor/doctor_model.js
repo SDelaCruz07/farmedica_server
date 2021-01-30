@@ -86,6 +86,30 @@ module.exports = {
         });
     },
 
+    async getLast({
+        id
+    }) {
+        return new Promise(function (resolve, reject) {
+            conn.query('call sp_mantenedor_doctor(?,?,?,?,?,?,?,?)', [
+                5,
+                "",
+                id,
+                "",
+                "",
+                "",
+                "",
+                ""
+            ], function (err, rows) {
+                try {
+                    return resolve(rows[0]);
+                } catch (error) {
+                    return (-1);
+                }
+
+            });
+        });
+    },
+
     async delete({
         id
     }) {
