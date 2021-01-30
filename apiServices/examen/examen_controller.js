@@ -1,5 +1,6 @@
 const examen_model = require('./examen_model');
 const dto = require('./examen_dto');
+const requisito_model = require('../requisito/requisito_model');
 
 module.exports = {
     async list(req, res) {
@@ -7,7 +8,23 @@ module.exports = {
             area: req.body.area,
             fecha: req.body.fecha,
         });
-        return res.send(dto.multiple(examen));
+        var array_examen = [];
+
+        for (let index = 0; index < examen.length; index++) {
+            var array_requisito = [];
+            var object_examen = new Object();
+            object_examen.id = examen[index]["exa_id"];
+            object_examen.nombre = examen[index]["exa_nombre"];
+            object_examen.descripcion = examen[index]["exa_descripcion"];
+            object_examen.imagen = examen[index]["exa_imagen"];
+            object_examen.precio = examen[index]["exa_precio"];
+            array_requisito = await requisito_model.list({
+                id_examen: examen[index]["exa_id"]
+            })
+            object_examen.requisito = array_requisito;
+            array_examen.push(object_examen);
+        }
+        return res.send(dto.multiple(array_examen));
     },
 
     async create(req, res) {
