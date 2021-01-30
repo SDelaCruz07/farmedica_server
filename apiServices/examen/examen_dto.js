@@ -3,21 +3,12 @@ const respuesta = (resource) => ({
     message: resource == -1 ? "Oh no! ocurrio un error en la peticion" : resource == 1 ? "Peticion exitosa" : "Ya exite el registro"
 });
 
-const last = (resource) => ({
-    id: resource.usu_id,
-    nombre: resource.usu_nombre,
-    apellido: resource.usu_apellido,
-    imagen: resource.usu_imagen,
-    total: resource.total
-});
-
 const single = (resource) => ({
-    id: resource.id,
-    nombre: resource.nombre,
-    apellido: resource.apellido,
-    carnet: resource.carnet,
-    imagen: resource.imagen,
-    last: resource.last.map((resource) => last(resource)), 
+    id: resource.exa_id,
+    nombre: resource.exa_nombre,
+    descripcion: resource.exa_descripcion,
+    imagen: resource.exa_imagen,
+    precio: resource.exa_precio,
 });
 
 const multiple = (resources) => ({

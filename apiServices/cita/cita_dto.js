@@ -8,7 +8,12 @@ const single = (resource) => ({
     fecha: resource.hor_fecha,
     hora_inicio: resource.hor_hora_ini,
     hora_fin: resource.hor_hora_fin,
-    area: resource.are_nombre,
+    area_nombre: resource.are_nombre,
+    area_imagen: resource.are_imagen,
+    doctor_nombre: resource.doc_nombre,
+    doctor_apellido: resource.doc_apellido,
+    doctor_carnet: resource.doc_carnet_cmp,
+    doctor_imagen: resource.doc_imagen,
     estado: resource.cit_estado,
 });
 

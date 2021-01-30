@@ -6,6 +6,7 @@ const user = require('../apiServices/user/user_routes');
 const cita = require('../apiServices/cita/cita_routes');
 const area = require('../apiServices/area/area_routes');
 const doctor = require('../apiServices/doctor/doctor_routes');
+const horario = require('../apiServices/horario/horario_routes');
 
 /* GET home page. */
 //AUNTETICACION-----------------------------------
@@ -18,5 +19,7 @@ router.use('/cita', cita);
 router.use('/area', area);
 //DOCTOR-----------------------------------------
 router.use('/doctor', doctor);
+//HORARIO-----------------------------------------
+router.use('/horario', horario);
 
 module.exports = router;
