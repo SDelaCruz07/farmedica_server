@@ -10,7 +10,9 @@ const single = (resource) => ({
     turno: resource.horx_turno,
     examen: resource.exa_nombre,
     precio: resource.exa_precio,
-    area: resource.are_nombre,
+    area_id: resource.are_id,
+    area_nombre: resource.are_nombre,
+    area_descripcion: resource.are_descripcion,
     estado: resource.citx_estado,
 });
 
