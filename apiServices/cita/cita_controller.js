@@ -26,7 +26,7 @@ module.exports = {
     },
 
     async estado(req, res) {
-        const cita = await cita_model.update({
+        const cita = await cita_model.estado({
             id: req.query.id,
             estado: req.body.estado,
         });
