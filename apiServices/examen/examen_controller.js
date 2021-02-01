@@ -6,6 +6,7 @@ module.exports = {
     async list(req, res) {
         const examen = await examen_model.list({
             area: req.body.area,
+            turno: req.body.turno,
             fecha: req.body.fecha,
         });
         var array_examen = [];
@@ -16,6 +17,7 @@ module.exports = {
             object_examen.id = examen[index]["exa_id"];
             object_examen.nombre = examen[index]["exa_nombre"];
             object_examen.descripcion = examen[index]["exa_descripcion"];
+            object_examen.cola = examen[index]["horx_cola"];
             object_examen.imagen = examen[index]["exa_imagen"];
             object_examen.precio = examen[index]["exa_precio"];
             array_requisito = await requisito_model.list({

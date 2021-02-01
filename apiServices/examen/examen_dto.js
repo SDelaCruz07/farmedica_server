@@ -12,6 +12,7 @@ const single = (resource) => ({
     id: resource.id,
     nombre: resource.nombre,
     descripcion: resource.descripcion,
+    cola: resource.cola,
     imagen: resource.imagen,
     precio: resource.precio,
     requisito: resource.requisito.map((resource) => requisito(resource)),

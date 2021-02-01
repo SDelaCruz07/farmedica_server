@@ -7,6 +7,7 @@ const auth = require('../../middleware/jwt');
 
 router.postAsync("/list", [auth.checkjwt,
 check('area', 'Id area es requerido').not().isEmpty(),
+check('turno', 'Turno es requerido').not().isEmpty(),
 check('fecha', 'Fecha es requerido').not().isEmpty(),
     validarCampos], examen_controller.list);
 

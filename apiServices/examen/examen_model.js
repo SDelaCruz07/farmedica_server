@@ -9,8 +9,9 @@ module.exports = {
         precio,
     }) {
         return new Promise(function (resolve, reject) {
-            conn.query('call sp_mantenedor_examen(?,?,?,?,?,?,?,?)', [
+            conn.query('call sp_mantenedor_examen(?,?,?,?,?,?,?,?,?)', [
                 2,
+                "",
                 "",
                 0,
                 nombre,
@@ -42,8 +43,9 @@ module.exports = {
         precio,
     }) {
         return new Promise(function (resolve, reject) {
-            conn.query('call sp_mantenedor_examen(?,?,?,?,?,?,?,?)', [
+            conn.query('call sp_mantenedor_examen(?,?,?,?,?,?,?,?,?)', [
                 3,
+                "",
                 "",
                 id,
                 nombre,
@@ -63,12 +65,14 @@ module.exports = {
 
     async list({
         area,
+        turno,
         fecha,
     }) {
         return new Promise(function (resolve, reject) {
-            conn.query('call sp_mantenedor_examen(?,?,?,?,?,?,?,?)', [
+            conn.query('call sp_mantenedor_examen(?,?,?,?,?,?,?,?,?)', [
                 1,
                 fecha,
+                turno,
                 0,
                 "",
                 "",
@@ -90,8 +94,9 @@ module.exports = {
         id
     }) {
         return new Promise(function (resolve, reject) {
-            conn.query('call sp_mantenedor_examen(?,?,?,?,?,?,?,?)', [
+            conn.query('call sp_mantenedor_examen(?,?,?,?,?,?,?,?,?)', [
                 4,
+                "",
                 "",
                 id,
                 "",
