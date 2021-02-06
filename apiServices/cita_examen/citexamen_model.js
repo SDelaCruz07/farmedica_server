@@ -16,7 +16,7 @@ module.exports = {
                 0
             ], function (err, rows) {
                 try {
-                    resolve(1);
+                    return resolve(rows[0]);
                 } catch (error) {
                     return resolve(-1);
                 }
@@ -39,7 +39,7 @@ module.exports = {
                 0
             ], function (err, rows) {
                 try {
-                    return resolve(1);
+                    return resolve(rows[0]);
                 } catch (error) {
                     return resolve(-1);
                 }
@@ -83,7 +83,7 @@ module.exports = {
                 estado
             ], function (err, rows) {
                 try {
-                    return resolve(1);
+                    return resolve(rows[0]);
                 } catch (error) {
                     return resolve(-1);
                 }

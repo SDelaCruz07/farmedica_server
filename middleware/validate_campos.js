@@ -4,8 +4,8 @@ const validarCampos = (req, res, next) => {
     const errores = validationResult(req);
     if (!errores.isEmpty()) {
         return res.status(400).json({
-            title: "Error",
-            descipcion: errores.mapped()
+            status: "Error",
+            message: errores.mapped()
         });
     }
     next();

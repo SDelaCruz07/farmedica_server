@@ -1,6 +1,16 @@
 const respuesta = (resource) => ({
-    status: resource == -1 ? "Error" : resource == 0 ? "Advertencia" : "Exito",
-    message: resource == -1 ? "Oh no! ocurrio un error en la peticion" : resource == 1 ? "Peticion exitosa" : "Ya exite el registro"
+    status: resource == -1 ? "Error" : resource[0]["_exists"] == 0 ? "Advertencia" : "Exito",
+    message: resource == -1 ? "Oh no! ocurrio un error en la peticion" : resource[0]["_exists_horario"] == 0 ? "Id horario no existe" : resource[0]["_exists_usu"] == 0 ? "Id usuario no existe" : resource[0]["_exists_cita"] > 1 ? "Horario reservado" : "Peticion exitosa"
+});
+
+const respuesta_update = (resource) => ({
+    status: resource == -1 ? "Error" : resource[0]["_exists"] == 0 ? "Advertencia" : "Exito",
+    message: resource == -1 ? "Oh no! ocurrio un error en la peticion" : resource[0]["_exists_id"] == 0 ? "Id cita no existe" : resource[0]["_estado_cita"] != 4 ? "La cita no se puede postergar" : "Peticion exitosa"
+});
+
+const respuesta_estado = (resource) => ({
+    status: resource == -1 ? "Error" : resource[0]["_exists"] == 0 ? "Advertencia" : "Exito",
+    message: resource == -1 ? "Oh no! ocurrio un error en la peticion" : resource[0]["_exists_id"] == 0 ? "Id cita no existe" : "Peticion exitosa"
 });
 
 const single = (resource) => ({
@@ -23,6 +33,8 @@ const multiple = (resources) => ({
 
 module.exports = {
     respuesta,
+    respuesta_update,
+    respuesta_estado,
     single,
     multiple,
 }

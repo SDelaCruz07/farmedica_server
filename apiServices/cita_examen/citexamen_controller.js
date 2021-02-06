@@ -22,15 +22,16 @@ module.exports = {
             id: req.query.id,
             fecha_postergacion: req.body.fecha_postergacion
         });
-        return res.send(dto.respuesta(citexamen));
+        return res.send(dto.respuesta_update(citexamen));
     },
 
     async estado(req, res) {
-        const citexamen = await citexamen_model.update({
+        const citexamen = await citexamen_model.estado({
             id: req.query.id,
             estado: req.body.estado,
         });
-        return res.send(dto.respuesta(citexamen));
+        console.log(citexamen);
+        return res.send(dto.respuesta_estado(citexamen));
     },
 
 }
