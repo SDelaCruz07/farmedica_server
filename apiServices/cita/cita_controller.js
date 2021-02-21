@@ -14,9 +14,9 @@ module.exports = {
                 object_cita.fecha = cita[i]["hor_fecha"];
                 object_cita.hora_inicio = cita[i]["hor_hora_ini"];
                 object_cita.hora_fin = cita[i]["hor_hora_fin"];
-                object_cita.area_id = cita[i]["area_id"];
-                object_cita.area_nombre = cita[i]["area_nombre"];
-                object_cita.area_imagen = cita[i]["area_imagen"];
+                object_cita.area_id = cita[i]["are_id"];
+                object_cita.area_nombre = cita[i]["are_nombre"];
+                object_cita.area_imagen = cita[i]["are_imagen"];
                 object_cita.doctor_nombre = cita[i]["doc_nombre"];
                 object_cita.doctor_apellido = cita[i]["doc_apellido"];
                 object_cita.doctor_carnet = cita[i]["doc_carnet_cmp"];
@@ -43,7 +43,6 @@ module.exports = {
             object_cita.receta = array_receta;
             array_cita.push(object_cita);
         }
-
         return res.send(dto.multiple(array_cita));
     },
 
