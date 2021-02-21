@@ -6,6 +6,7 @@ const { validarCampos } = require('../../middleware/validate_campos');
 const auth = require('../../middleware/jwt');
 
 router.getAsync("/list", [auth.checkjwt], receta_controller.list);
+router.getAsync("/listUsuario", [auth.checkjwt], receta_controller.listUsuario);
 
 // router.postAsync("/create", [auth.checkjwt,
 // check('descripcion', 'Descripcion es requerido').not().isEmpty(),

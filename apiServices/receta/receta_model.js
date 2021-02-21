@@ -83,6 +83,26 @@ module.exports = {
         });
     },
 
+    async listUsuario({
+        id,
+    }) {
+        return new Promise(function (resolve, reject) {
+            conn.query('call sp_mantenedor_receta(?,?,?,?)', [
+                3,
+                id,
+                "",
+                ""
+            ], function (err, rows) {
+                try {
+                    return resolve(rows[0]);
+                } catch (error) {
+                    return (-1);
+                }
+
+            });
+        });
+    },
+
     async listMedicamento({
         id_receta,
     }) {

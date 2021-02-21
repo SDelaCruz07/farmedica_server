@@ -20,7 +20,7 @@ const single = (resource) => ({
 
 const multiple = (resources) => ({
     status: resources == -1 ? "Error" : "Exito",
-    data: resources.map((resource) => single(resource)),
+    data: resources,
 });
 
 module.exports = {

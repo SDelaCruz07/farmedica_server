@@ -1,6 +1,6 @@
 const respuesta = (resource) => ({
     status: resource == -1 ? "Error" : resource[0]["_exists"] == 0 ? "Advertencia" : "Exito",
-    message: resource == -1 ? "Oh no! ocurrio un error en la peticion" : resource[0]["_exists_id"] == 0 ? "ID cita no existe" : "Peticion exitosa"
+    message: resource == -1 ? "Oh no! ocurrio un error en la peticion" : resource[0]["_exists_id"] == 0 ? "ID no existe" : "Peticion exitosa"
 });
 
 const requisito = (resource) => ({
@@ -15,6 +15,8 @@ const requisito = (resource) => ({
 const single = (resource) => ({
     id: resource.id,
     numero: resource.numero,
+    created_at: resource.created_at,
+    cita_id: resource.cita_id,
     doctor_nombre: resource.doctor_nombre,
     doctor_apellido: resource.doctor_apellido,
     medicamentos: resource.medicamento.map((resource) => requisito(resource)),

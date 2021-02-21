@@ -28,6 +28,34 @@ module.exports = {
         return res.send(dto.multiple(array_receta));
     },
 
+    async listUsuario(req, res) {
+        const receta = await receta_model.listUsuario({
+            id: req.query.id_usuario,
+        });
+        var array_receta = [];
+
+        if (receta[0]["_exists_id"] == 0) {
+            return res.send(dto.respuesta(receta));
+        }
+
+        for (let index = 0; index < receta.length; index++) {
+            var array_medicamento = [];
+            var object_receta = new Object();
+            object_receta.id = receta[index]["rec_id"];
+            object_receta.numero = receta[index]["rec_numero"];
+            object_receta.created_at = receta[index]["rec_created_at"];
+            object_receta.doctor_nombre = receta[index]["doc_nombre"];
+            object_receta.doctor_apellido = receta[index]["doc_apellido"];
+            object_receta.cita_id = receta[index]["cit_id"];
+            array_medicamento = await receta_model.listMedicamento({
+                id_receta: receta[index]["rec_id"]
+            })
+            object_receta.medicamento = array_medicamento;
+            array_receta.push(object_receta);
+        }
+        return res.send(dto.multiple(array_receta));
+    },
+
     // async create(req, res) {
     //     const receta = await receta_model.create({
     //         nombre: req.body.nombre,
